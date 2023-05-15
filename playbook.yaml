@@ -1,18 +1,23 @@
-- name: Install packages
-  hosts: all
-  become: true
+- hosts: nginx
   tasks:
-    - name: Install wget on all hosts
-      apt:
-        name: wget
-        state: present
-
-    - name: Install unzip on demo hosts
-      apt:
-        name: unzip
-        state: present
-
-    - name: Install nginx on nginx host
+    - name: Install nginx
       apt:
         name: nginx
+        state: present
+
+    - name: Copy new HTML file to nginx
+      copy:
+        src: index.html
+        dest: /usr/share/nginx/html/index.html
+
+    - name: Restart nginx
+      service:
+        name: nginx
+        state: restarted
+
+- hosts: docker
+  tasks:
+    - name: Install Docker
+      apt:
+        name: docker.io
         state: present
