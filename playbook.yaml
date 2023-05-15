@@ -1,8 +1,20 @@
-- hosts: demo
+- name: Install packages
+  hosts: all
+  become: true
   tasks:
-    - name: ping
-      ping:
-- hosts: nginx
-  tasks:
-    - name: ping nginx
-      ping:
+    - name: Install wget on all hosts
+      apt:
+        name: wget
+        state: present
+
+    - name: Install unzip on demo hosts
+      apt:
+        name: unzip
+        state: present
+      when: inventory_hostname == 'demo'
+
+    - name: Install nginx on nginx host
+      apt:
+        name: nginx
+        state: present
+      when: inventory_hostname == 'nginx'
