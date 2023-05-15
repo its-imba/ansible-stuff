@@ -11,10 +11,8 @@
       apt:
         name: unzip
         state: present
-      when: inventory_hostname == 'demo'
 
     - name: Install nginx on nginx host
       apt:
         name: nginx
         state: present
-      when: inventory_hostname == 'nginx'
