@@ -3,7 +3,6 @@
   become_user: root
   tasks:
     - name: Create /etc/yum.repos.d directory
-      become: yes
       file:
         path: /etc/yum.repos.d
         state: directory
