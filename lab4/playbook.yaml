@@ -21,7 +21,7 @@
     package_to_install: "{{ ansible_pkg_mgr | default('unzip') }}"
     repo_url: "{{ repo }}"
     folder_path: "~/ansible/lab4"
-    file_path: "{{ folder_path }}"
+    file_path: "{{ folder_path }}/newfile.txt"
     text_to_append: "{{ text }}"
 
   tasks:
@@ -47,9 +47,9 @@
         state: present
 
     - name: Create new file and append text
-      lineinfile:
-        path: "{{ file_path }}"
-        line: "{{ text_to_append }}"
+      copy:
+        dest: "{{ file_path }}"
+        content: "{{ text_to_append }}"
       notify: restart nginx
 
   handlers:
