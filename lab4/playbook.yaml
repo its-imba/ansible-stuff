@@ -1,37 +1,44 @@
----
-- name: My Ansible Playbook
-  hosts: all
+- name: Lab 4 Playbook
+  hosts:
+    - nginx
+    - demo
   gather_facts: false
+  become: true
 
-  vars:
-    package_to_install: "{{ ansible_pkg_mgr | default('unzip') }}"
-    repo_url: "{{ repo }}"
-    file_path: "/path/to/file.txt"
-    text_to_append: "{{ text }}"
-
-  tasks:
-    - name: Print name to console
-      debug:
-        msg: "Your Name"
-      run_once: true
-
-    - name: Clone repository
-      git:
-        repo: "{{ repo_url }}"
-        dest: "/path/to/destination"
-      run_once: true
-
-    - name: Install package
-      package:
-        name: "{{ package_to_install }}"
-        state: present
-
+  tasks: 
     - name: Install nginx
       package:
         name: nginx
         state: present
       notify: restart nginx
       when: inventory_hostname == 'nginx'
+
+- name: Lab 4 Playbook - Demo Host
+  hosts: demo
+  gather_facts: false
+
+  vars:
+    package_to_install: "{{ ansible_pkg_mgr | default('unzip') }}"
+    repo_url: "{{ repo }}"
+    file_path: "~/ansible/lab4"
+    text_to_append: "{{ text }}"
+
+  tasks:
+    - name: Print name to console
+      debug:
+        msg: "Printed name: Sam"
+      run_once: true
+
+    - name: Clone repository
+      git:
+        repo: "{{ repo_url }}"
+        dest: "~/"
+      run_once: true
+
+    - name: Install package
+      package:
+        name: "{{ package_to_install }}"
+        state: present
 
     - name: Create new file and append text
       lineinfile:
