@@ -21,7 +21,7 @@
     package_to_install: "{{ ansible_pkg_mgr | default('unzip') }}"
     repo_url: "{{ repo }}"
     folder_path: "~/ansible/lab4"
-    file_path: "{{ folder_path }}/file.txt"
+    file_path: "{{ folder_path }}"
     text_to_append: "{{ text }}"
 
   tasks:
