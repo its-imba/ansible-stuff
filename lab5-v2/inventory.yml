@@ -1,0 +1,28 @@
+---
+all:
+  children:
+    nginx:
+      children:
+        nginx_group: {}
+    docker:
+      children:
+        docker_group: {}
+    jenkins:
+      children:
+        jenkins_group: {}
+
+nginx_group:
+  hosts:
+    172.31.44.163:
+
+docker_group:
+  hosts:
+    172.31.40.249:
+
+jenkins_group:
+  hosts:
+    172.31.32.145:
+
+  vars:
+    ansible_user: ubuntu
+    ansible_ssh_private_key_file: "~/qa-key-15th-may.pem"
