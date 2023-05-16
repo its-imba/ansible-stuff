@@ -20,7 +20,8 @@
   vars:
     package_to_install: "{{ ansible_pkg_mgr | default('unzip') }}"
     repo_url: "{{ repo }}"
-    file_path: "~/ansible/lab4"
+    folder_path: "~/ansible/lab4"
+    file_path: "{{ folder_path }}/file.txt"
     text_to_append: "{{ text }}"
 
   tasks:
@@ -28,6 +29,11 @@
       debug:
         msg: "Printed name: Sam"
       run_once: true
+
+    - name: Create folder for the new file to go in
+      file:
+        path: "{{ folder_path }}"
+        state: directory
 
     - name: Clone repository
       git:
