@@ -1,7 +1,18 @@
 ---
-- hosts: all
+- hosts: nginx_group
   become: yes
   roles:
-    - nginx
-    - docker
-    - jenkins
+    - role: nginx
+      hosts: nginx_group
+
+- hosts: docker_group
+  become: yes
+  roles:
+    - role: docker
+      hosts: docker_group
+
+- hosts: jenkins_group
+  become: yes
+  roles:
+    - role: jenkins
+      hosts: jenkins_group
