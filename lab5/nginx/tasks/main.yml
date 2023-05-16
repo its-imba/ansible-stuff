@@ -36,8 +36,3 @@
   service:
     name: docker
     state: started
-
-- name: Install and setup Jenkins
-  package:
-    name: jenkins
-    state: present
