@@ -32,7 +32,7 @@
     - name: Clone repository
       git:
         repo: "{{ repo_url }}"
-        dest: "~/"
+        dest: "~/repo"
       run_once: true
 
     - name: Install package
