@@ -1,4 +1,4 @@
-- name: Lab 4 Playbook
+- name: Lab 4 Playbook - NGINX
   hosts:
     - nginx
   gather_facts: false
@@ -26,7 +26,7 @@
   tasks:
     - name: Print name to console
       debug:
-        msg: "Printed name: Sam"
+        msg: "Sam"
       run_once: true
 
     - name: Create folder for the new file to go in
@@ -34,7 +34,7 @@
         path: "{{ folder_path }}"
         state: directory
 
-    - name: Clone repository
+    - name: Clone github repo
       git:
         repo: "{{ repo_url }}"
         dest: "~/repo"
@@ -45,7 +45,7 @@
         name: "{{ package_to_install }}"
         state: present
 
-    - name: Create new file and append text
+    - name: Create the new file and append text
       copy:
         dest: "{{ file_path }}"
         content: "{{ text_to_append }}"
