@@ -1,2 +1,2 @@
----
-# tasks file for jenkins
+- name: Include Jenkins installation tasks
+  include_tasks: install-jenkins.yaml
