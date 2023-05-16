@@ -3,9 +3,6 @@
   gather_facts: false
   become: true
 
-  tasks:
-    - name: Include Jenkins installation tasks
-      import_tasks: install-jenkins.yaml
-
   roles:
     - nginx
+    - jenkins
