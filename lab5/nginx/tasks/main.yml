@@ -1,0 +1,35 @@
+---
+# tasks file for nginx
+---
+- name: Dev environment setup
+  group:
+    name: Devs
+    state: present
+
+- name: Add a new user
+  user:
+    name: devsam
+    state: present
+    group: Devs
+
+- name: Install zsh shell and curl
+  package:
+    name: 
+      - zsh
+      - curl
+    state: present
+
+- name: Install and setup Docker
+  package:
+    name: docker-ce
+    state: present
+
+- name: Start Docker service
+  service:
+    name: docker
+    state: started
+
+- name: Install and setup Jenkins
+  package:
+    name: jenkins
+    state: present
