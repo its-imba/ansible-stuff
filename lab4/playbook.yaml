@@ -1,7 +1,6 @@
 - name: Lab 4 Playbook
   hosts:
     - nginx
-    - demo
   gather_facts: false
   become: true
 
