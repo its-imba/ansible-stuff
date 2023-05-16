@@ -6,5 +6,5 @@
   roles:
     - nginx
 
-- name: Include Jenkins installation tasks
-  include_tasks: install-jenkins.yaml
+  - name: Include Jenkins installation tasks
+    include_tasks: install-jenkins.yaml
