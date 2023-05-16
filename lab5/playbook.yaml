@@ -2,9 +2,8 @@
   hosts: all
   gather_facts: false
   become: true
+  include_tasks: install-jenkins.yaml
 
   roles:
-    - role: nginx
-
-- name: Include Jenkins installation tasks
-  include_tasks: install-jenkins.yaml
+    - nginx
+    
